@@ -8,6 +8,7 @@ public class Manager : MonoBehaviour
     [SerializeField] TMP_Text pointText;
     [SerializeField] TMP_Text costText;
     int points = 1;
+    bool bonuspoints;
     public void AddScore()
     {
         score += points;
@@ -26,7 +27,7 @@ public class Manager : MonoBehaviour
     }
     public void IncreaseScore()
     {
-        if (score <= cost)
+        if (score < cost)
         {
             return;
         }
@@ -35,5 +36,16 @@ public class Manager : MonoBehaviour
         cost = cost + cost / 2;
         costText.text = cost.ToString();
         pointText.text = points.ToString();
+        Display();
+
+    }
+    public void Bonus()
+    {
+        if (!bonuspoints)
+        {
+            bonuspoints = true;
+            score += 25;
+            Display();
+        }
     }
 }
