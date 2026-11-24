@@ -1,9 +1,12 @@
 using UnityEngine;
 using TMPro;
+using JetBrains.Annotations;
 public class Manager : MonoBehaviour
 {
+    [SerializeField] AutoClicker autoClicker;
     [SerializeField] int score;
     [SerializeField] int cost;
+    [SerializeField] int autoCost;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text pointText;
     [SerializeField] TMP_Text costText;
@@ -37,7 +40,18 @@ public class Manager : MonoBehaviour
         costText.text = cost.ToString();
         pointText.text = points.ToString();
         Display();
-
+    }
+    public void AddAutoScore()
+    {
+        score += 1;
+        Display();
+    }
+    public void BuyAutoClick()
+    {
+        if (score < autoCost)
+        {  return; }
+        score -= autoCost;
+        Display();
     }
     public void Bonus()
     {
